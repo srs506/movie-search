@@ -16,6 +16,8 @@ class MovieTable extends React.Component {
                   <img
                     src={`${imageBaseUrl}${posterSize}${item.poster_path}`}
                     alt={`Poster for '${item.title}'`}
+                    width="92px;"
+                    class="posterImage"
                   />
                 </td>
               </tr>

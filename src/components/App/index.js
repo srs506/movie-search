@@ -70,7 +70,7 @@ class App extends React.Component {
           <MovieTable
             list={list}
             imageBaseUrl={imageBaseUrl}
-            posterSize={(posterSizes && posterSizes[0]) || null}
+            posterSize={(posterSizes && posterSizes[1]) || null}
           />
         </div>
       </div>
