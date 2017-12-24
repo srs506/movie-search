@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MovieTable from '../Table';
+import MovieTable from '../MovieTable';
 import './index.css';
 
 const PATH_BASE = `https://api.themoviedb.org/3`;
