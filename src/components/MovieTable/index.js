@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './index.css';
 
-class Table extends React.Component {
+class MovieTable extends React.Component {
   render() {
     const { list, imageBaseUrl, posterSize } = this.props;
 
@@ -26,4 +26,4 @@ class Table extends React.Component {
   }
 }
 
-export default Table;
+export default MovieTable;

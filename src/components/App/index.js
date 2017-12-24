@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Table from '../Table';
+import MovieTable from '../Table';
 import './index.css';
 
 const PATH_BASE = `https://api.themoviedb.org/3`;
@@ -67,7 +67,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="main">
-          <Table
+          <MovieTable
             list={list}
             imageBaseUrl={imageBaseUrl}
             posterSize={(posterSizes && posterSizes[0]) || null}
