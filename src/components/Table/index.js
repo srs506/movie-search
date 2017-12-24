@@ -3,7 +3,7 @@ import './index.css';
 
 class Table extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list, imageBaseUrl, posterSize } = this.props;
 
     return (
       list && (
@@ -12,6 +12,11 @@ class Table extends React.Component {
             {list.map(item => (
               <tr key={item.id}>
                 <td>{item.title}</td>
+                <td>
+                  <img
+                    src={`${imageBaseUrl}${posterSize}${item.poster_path}`}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>

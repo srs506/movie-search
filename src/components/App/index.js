@@ -5,6 +5,7 @@ import './index.css';
 const PATH_BASE = `https://api.themoviedb.org/3`;
 const PATH_DISCOVER = '/discover';
 const PATH_MOVIE = '/movie';
+const PATH_CONFIGURATION = '/configuration';
 const PARAM_API = 'api_key=';
 const API_KEY = '1835ac896829a73f680b0d9f6094d57a';
 const PARAM_VOTE_AVG_GTE = 'vote_average.gte=';
@@ -15,17 +16,31 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      result: null,
-      voteAverageGte: DEFAULT_VOTE_AVG_GTE
+      movieList: null,
+      voteAverageGte: DEFAULT_VOTE_AVG_GTE,
+      imageBaseUrl: null,
+      posterSizes: null
     };
 
     this.fetchMovies = this.fetchMovies.bind(this);
+    this.fetchConfiguration = this.fetchConfiguration.bind(this);
+    this.setConfiguration = this.setConfiguration.bind(this);
     this.setMovieList = this.setMovieList.bind(this);
   }
 
   setMovieList(result) {
     this.setState({
-      result: result
+      movieList: result
+    });
+  }
+
+  setConfiguration(result) {
+    console.log(result.images);
+    const { secure_base_url, poster_sizes } = result.images;
+
+    this.setState({
+      imageBaseUrl: secure_base_url,
+      posterSizes: poster_sizes
     });
   }
 
@@ -38,16 +53,25 @@ class App extends React.Component {
       .catch(e => e);
   }
 
-  render() {
-    const { result } = this.state;
-    const list = (result && result.results) || [];
+  fetchConfiguration() {
+    fetch(`${PATH_BASE}${PATH_CONFIGURATION}?${PARAM_API}${API_KEY}`)
+      .then(response => response.json())
+      .then(result => this.setConfiguration(result))
+      .catch(e => e);
+  }
 
-    console.log(list);
+  render() {
+    const { movieList, imageBaseUrl, posterSizes } = this.state;
+    const list = (movieList && movieList.results) || [];
 
     return (
       <div className="container">
         <div className="main">
-          <Table list={list} />
+          <Table
+            list={list}
+            imageBaseUrl={imageBaseUrl}
+            posterSize={(posterSizes && posterSizes[0]) || null}
+          />
         </div>
       </div>
     );
@@ -56,6 +80,8 @@ class App extends React.Component {
   componentDidMount() {
     const { voteAverageGte } = this.state;
     this.setState({ voteAverage: voteAverageGte });
+
+    this.fetchConfiguration();
     this.fetchMovies(voteAverageGte);
   }
 }
