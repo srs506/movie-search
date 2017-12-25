@@ -40,7 +40,6 @@ class App extends React.Component {
   }
 
   setConfiguration(result) {
-    console.log(result.images);
     const { secure_base_url, poster_sizes } = result.images;
 
     this.setState({
@@ -85,17 +84,23 @@ class App extends React.Component {
       <div className="container">
         <div className="main">
           <form onSubmit={this.onMovieSearchSubmit}>
-            0
-            <input
-              type="range"
-              min="0"
-              max="10"
-              step=".1"
-              defaultValue={voteAverageGte}
-              onChange={this.handleVoteAverageGteSliderChange}
-            />
-            {voteAverageGte}
-            <button type="submit">Submit</button>
+            <fieldset>
+              <label htmlFor="voteAverageInput">Vote Average</label>
+              <input
+                type="number"
+                min="0"
+                max="10"
+                step=".1"
+                value={voteAverageGte}
+                onChange={this.handleVoteAverageGteSliderChange}
+              />
+              <input
+                className="button-primary"
+                type="submit"
+                value="Submit"
+                id="voteAverageInput"
+              />
+            </fieldset>
           </form>
 
           <MovieTable
