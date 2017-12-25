@@ -27,6 +27,10 @@ class App extends React.Component {
     this.fetchConfiguration = this.fetchConfiguration.bind(this);
     this.setConfiguration = this.setConfiguration.bind(this);
     this.setMovieList = this.setMovieList.bind(this);
+    this.handleVoteAverageGteSliderChange = this.handleVoteAverageGteSliderChange.bind(
+      this
+    );
+    this.onMovieSearchSubmit = this.onMovieSearchSubmit.bind(this);
   }
 
   setMovieList(result) {
@@ -61,13 +65,39 @@ class App extends React.Component {
       .catch(e => e);
   }
 
+  handleVoteAverageGteSliderChange(event) {
+    this.setState({
+      voteAverageGte: event.target.value
+    });
+    event.preventDefault();
+  }
+
+  onMovieSearchSubmit(event) {
+    this.fetchMovies(this.state.voteAverageGte);
+    event.preventDefault();
+  }
+
   render() {
-    const { movieList, imageBaseUrl, posterSizes } = this.state;
+    const { movieList, imageBaseUrl, posterSizes, voteAverageGte } = this.state;
     const list = (movieList && movieList.results) || [];
 
     return (
       <div className="container">
         <div className="main">
+          <form onSubmit={this.onMovieSearchSubmit}>
+            0
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step=".1"
+              defaultValue={voteAverageGte}
+              onChange={this.handleVoteAverageGteSliderChange}
+            />
+            {voteAverageGte}
+            <button type="submit">Submit</button>
+          </form>
+
           <MovieTable
             list={list}
             imageBaseUrl={imageBaseUrl}
