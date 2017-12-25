@@ -75,7 +75,7 @@ class App extends React.Component {
           />
         </div>
         <div className="footer">
-          <img src={TMDBLogo} height="60px;" />
+          <img src={TMDBLogo} height="60px;" alt="Powered by The Movie DB" />
         </div>
       </div>
     );
