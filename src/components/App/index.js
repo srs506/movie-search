@@ -34,8 +34,18 @@ class App extends React.Component {
   }
 
   setMovieList(result) {
+    const { imageBaseUrl, posterSize } = this.state;
+
+    const movies = result.results;
+
+    // Add the basePosterPath property to each movie so we don't
+    // have to pass extra props to our table
+    movies.forEach(element => {
+      element.basePosterPath = `${imageBaseUrl}${posterSize}`;
+    });
+
     this.setState({
-      movieList: result
+      movieList: movies
     });
   }
 
@@ -77,8 +87,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { movieList, imageBaseUrl, posterSize, voteAverageGte } = this.state;
-    const list = (movieList && movieList.results) || [];
+    const { movieList, voteAverageGte } = this.state;
+    const movies = movieList || [];
 
     return (
       <div className="container">
@@ -103,11 +113,7 @@ class App extends React.Component {
             </fieldset>
           </form>
 
-          <MovieTable
-            list={list}
-            imageBaseUrl={imageBaseUrl}
-            posterSize={posterSize}
-          />
+          <MovieTable movies={movies} />
         </div>
         <div className="footer">
           <img src={TMDBLogo} height="60px;" alt="Powered by The Movie DB" />
