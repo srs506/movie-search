@@ -20,7 +20,7 @@ class App extends React.Component {
       movieList: null,
       voteAverageGte: DEFAULT_VOTE_AVG_GTE,
       imageBaseUrl: null,
-      posterSizes: null
+      posterSize: null
     };
 
     this.fetchMovies = this.fetchMovies.bind(this);
@@ -44,7 +44,7 @@ class App extends React.Component {
 
     this.setState({
       imageBaseUrl: secure_base_url,
-      posterSizes: poster_sizes
+      posterSize: (poster_sizes && poster_sizes[1]) || null
     });
   }
 
@@ -77,7 +77,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { movieList, imageBaseUrl, posterSizes, voteAverageGte } = this.state;
+    const { movieList, imageBaseUrl, posterSize, voteAverageGte } = this.state;
     const list = (movieList && movieList.results) || [];
 
     return (
@@ -106,7 +106,7 @@ class App extends React.Component {
           <MovieTable
             list={list}
             imageBaseUrl={imageBaseUrl}
-            posterSize={(posterSizes && posterSizes[1]) || null}
+            posterSize={posterSize}
           />
         </div>
         <div className="footer">
