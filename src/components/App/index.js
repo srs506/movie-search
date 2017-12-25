@@ -1,6 +1,7 @@
 import * as React from 'react';
 import MovieTable from '../MovieTable';
 import './index.css';
+import TMDBLogo from '../../images/powered-by-rectangle-blue.svg';
 
 const PATH_BASE = `https://api.themoviedb.org/3`;
 const PATH_DISCOVER = '/discover';
@@ -72,6 +73,9 @@ class App extends React.Component {
             imageBaseUrl={imageBaseUrl}
             posterSize={(posterSizes && posterSizes[1]) || null}
           />
+        </div>
+        <div className="footer">
+          <img src={TMDBLogo} height="60px;" />
         </div>
       </div>
     );
