@@ -1,3 +1,8 @@
 .posterImage {
   border: thin solid darkblue;
 }
+
+.voteAverageIcon {
+  margin-right: 5px;
+  vertical-align: text-bottom;
+}

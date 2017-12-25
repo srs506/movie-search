@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './index.css';
+import { Star } from 'react-feather';
 
 class MovieTable extends React.Component {
   render() {
@@ -24,7 +25,12 @@ class MovieTable extends React.Component {
                     />
                   </td>
                   <td>{item.title}</td>
-                  <td>{item.vote_average}</td>
+                  <td>
+                    <div className="voteAverage">
+                      <Star className="voteAverageIcon" />
+                      {item.vote_average}
+                    </div>
+                  </td>
                   <td>{releaseYear}</td>
                 </tr>
               );
