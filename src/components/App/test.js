@@ -8,7 +8,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
 });
 
-test('has a valid snapshot', () => {
+it('has a valid snapshot', () => {
   const component = renderer.create(<App />);
 
   let tree = component.toJSON();
