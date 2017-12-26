@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`has a valid snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="main"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <fieldset>
+        <label
+          htmlFor="voteAverageInput"
+        >
+          Vote Average
+        </label>
+        <input
+          max="10"
+          min="0"
+          onChange={[Function]}
+          step=".1"
+          type="number"
+          value="6.0"
+        />
+        <input
+          className="button-primary"
+          id="voteAverageInput"
+          type="submit"
+          value="Submit"
+        />
+      </fieldset>
+    </form>
+    <table>
+      <tbody />
+    </table>
+  </div>
+  <div
+    className="footer"
+  >
+    <img
+      alt="Powered by The Movie DB"
+      height="60px;"
+      src="powered-by-rectangle-blue.svg"
+    />
+  </div>
+</div>
+`;
