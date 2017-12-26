@@ -42,7 +42,15 @@ const movies = [
   }
 ];
 
+const testMovieTable = <MovieTable movies={movies} />;
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<MovieTable movies={movies} />, div);
+  ReactDOM.render(testMovieTable, div);
+});
+
+it('has a valid snapshot', () => {
+  const component = renderer.create(testMovieTable);
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
 });

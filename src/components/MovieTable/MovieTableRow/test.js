@@ -22,7 +22,15 @@ const movie = {
   basePosterPath: 'https://image.tmdb.org/t/p/w154'
 };
 
+const testRow = <MovieTableRow movie={movie} />;
+
 it('renders without crashing', () => {
   const tableBody = document.createElement('tbody');
-  ReactDOM.render(<MovieTableRow movie={movie} />, tableBody);
+  ReactDOM.render(testRow, tableBody);
+});
+
+it('has a valid snapshot', () => {
+  const component = renderer.create(testRow);
+  let tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
 });

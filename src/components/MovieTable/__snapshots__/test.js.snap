@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`has a valid snapshot 1`] = `
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <img
+          alt="Poster for 'It'"
+          className="posterImage"
+          src="https://image.tmdb.org/t/p/w154/9E2y5Q7WlCVNEhP5GiVTjhEhx1o.jpg"
+          width="92px;"
+        />
+      </td>
+      <td>
+        It
+      </td>
+      <td>
+        <div
+          className="voteAverage"
+        >
+          <svg
+            className="voteAverageIcon"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            />
+          </svg>
+          7.2
+        </div>
+      </td>
+      <td>
+        2017
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img
+          alt="Poster for 'Star Wars: The Last Jedi'"
+          className="posterImage"
+          src="https://image.tmdb.org/t/p/w154/xGWVjewoXnJhvxKW619cMzppJDQ.jpg"
+          width="92px;"
+        />
+      </td>
+      <td>
+        Star Wars: The Last Jedi
+      </td>
+      <td>
+        <div
+          className="voteAverage"
+        >
+          <svg
+            className="voteAverageIcon"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            />
+          </svg>
+          7.4
+        </div>
+      </td>
+      <td>
+        2017
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
