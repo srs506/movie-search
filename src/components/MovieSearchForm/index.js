@@ -1,5 +1,8 @@
 import * as React from 'react';
 import './index.css';
+import MultirangeInput from '../MultirangeInput';
+
+const currentYear = new Date().getFullYear();
 
 const MovieSearchForm = ({ voteAverage, onSubmit, onVoteAverageChange }) => {
   return (
@@ -7,17 +10,14 @@ const MovieSearchForm = ({ voteAverage, onSubmit, onVoteAverageChange }) => {
       <fieldset>
         <label htmlFor="voteAverageInput">Vote Average</label>
 
-        <span>0</span>
         <input
-          type="range"
+          type="number"
           min="0"
           max="10"
-          step=".1"
           className="voteAverageSlider"
           value={voteAverage}
           onChange={onVoteAverageChange}
         />
-        <span>{voteAverage}</span>
 
         <div>
           <input

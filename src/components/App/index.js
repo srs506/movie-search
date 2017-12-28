@@ -78,6 +78,13 @@ class App extends React.Component {
 
     let fixedValue = value;
 
+    if (value > 10) {
+      fixedValue = 10;
+    }
+    if (value < 0) {
+      fixedValue = 0;
+    }
+
     this.setState({
       voteAverage: fixedValue
     });
