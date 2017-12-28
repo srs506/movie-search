@@ -1,5 +1,6 @@
 import * as React from 'react';
 import MovieTable from '../MovieTable';
+import MovieSearchForm from '../MovieSearchForm';
 import './index.css';
 import TMDBLogo from '../../images/powered-by-rectangle-blue.svg';
 
@@ -18,7 +19,7 @@ class App extends React.Component {
 
     this.state = {
       movieList: null,
-      voteAverageGte: DEFAULT_VOTE_AVG_GTE,
+      voteAverage: DEFAULT_VOTE_AVG_GTE,
       imageBaseUrl: null,
       posterSize: null
     };
@@ -27,9 +28,7 @@ class App extends React.Component {
     this.fetchConfiguration = this.fetchConfiguration.bind(this);
     this.setConfiguration = this.setConfiguration.bind(this);
     this.setMovieList = this.setMovieList.bind(this);
-    this.handleVoteAverageGteSliderChange = this.handleVoteAverageGteSliderChange.bind(
-      this
-    );
+    this.onVoteAverageChange = this.onVoteAverageChange.bind(this);
     this.onMovieSearchSubmit = this.onMovieSearchSubmit.bind(this);
   }
 
@@ -74,44 +73,33 @@ class App extends React.Component {
       .catch(e => e);
   }
 
-  handleVoteAverageGteSliderChange(event) {
+  onVoteAverageChange(event) {
+    const { value } = event.target;
+
+    let fixedValue = value;
+
     this.setState({
-      voteAverageGte: event.target.value
+      voteAverage: fixedValue
     });
-    event.preventDefault();
   }
 
   onMovieSearchSubmit(event) {
-    this.fetchMovies(this.state.voteAverageGte);
+    this.fetchMovies(this.state.voteAverage);
     event.preventDefault();
   }
 
   render() {
-    const { movieList, voteAverageGte } = this.state;
+    const { movieList, voteAverage } = this.state;
     const movies = movieList || [];
 
     return (
       <div className="container">
         <div className="main">
-          <form onSubmit={this.onMovieSearchSubmit}>
-            <fieldset>
-              <label htmlFor="voteAverageInput">Vote Average</label>
-              <input
-                type="number"
-                min="0"
-                max="10"
-                step=".1"
-                value={voteAverageGte}
-                onChange={this.handleVoteAverageGteSliderChange}
-              />
-              <input
-                className="button-primary"
-                type="submit"
-                value="Submit"
-                id="voteAverageInput"
-              />
-            </fieldset>
-          </form>
+          <MovieSearchForm
+            voteAverage={voteAverage}
+            onSubmit={this.onMovieSearchSubmit}
+            onVoteAverageChange={this.onVoteAverageChange}
+          />
 
           <MovieTable movies={movies} />
         </div>
@@ -123,11 +111,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const { voteAverageGte } = this.state;
-    this.setState({ voteAverage: voteAverageGte });
+    const { voteAverage } = this.state;
+    this.setState({ voteAverage: voteAverage });
 
     this.fetchConfiguration();
-    this.fetchMovies(voteAverageGte);
+    this.fetchMovies(voteAverage);
   }
 }
 
