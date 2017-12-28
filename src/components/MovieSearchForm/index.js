@@ -23,7 +23,7 @@ const MovieSearchForm = ({ voteAverage, onSubmit, onVoteAverageChange }) => {
           <input
             className="button-primary"
             type="submit"
-            value="Submit"
+            value="Search!"
             id="voteAverageInput"
           />
         </div>
