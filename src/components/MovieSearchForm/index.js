@@ -1,8 +1,6 @@
 import * as React from 'react';
 import './index.css';
 
-const currentYear = new Date().getFullYear();
-
 const MovieSearchForm = ({ voteAverage, onSubmit, onVoteAverageChange }) => {
   return (
     <form onSubmit={onSubmit}>
