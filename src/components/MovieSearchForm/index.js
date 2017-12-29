@@ -1,7 +1,13 @@
 import * as React from 'react';
 import './index.css';
 
-const MovieSearchForm = ({ voteAverage, onSubmit, onVoteAverageChange }) => {
+const MovieSearchForm = ({
+  onSubmit,
+  voteAverage,
+  onVoteAverageChange,
+  releaseDateGte,
+  onReleaseDateGteChange
+}) => {
   return (
     <form onSubmit={onSubmit}>
       <fieldset>
@@ -11,9 +17,18 @@ const MovieSearchForm = ({ voteAverage, onSubmit, onVoteAverageChange }) => {
           type="number"
           min="0"
           max="10"
+          step=".1"
           className="voteAverageSlider"
           value={voteAverage}
           onChange={onVoteAverageChange}
+        />
+
+        <label htmlFor="releaseDateGte">Released After</label>
+
+        <input
+          type="number"
+          value={releaseDateGte}
+          onChange={onReleaseDateGteChange}
         />
 
         <div>
