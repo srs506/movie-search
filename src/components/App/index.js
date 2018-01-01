@@ -28,6 +28,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      isLoading: false,
       movieList: null,
       voteAverage: DEFAULT_VOTE_AVG_GTE,
       imageBaseUrl: null,
@@ -72,7 +73,7 @@ class App extends React.Component {
   }
 
   fetchMovies(voteAverage, releaseDateGte, releaseDateLte, page = 0) {
-    fetch(
+    return fetch(
       `${PATH_BASE}${PATH_DISCOVER}${PATH_MOVIE}?${PARAM_API}${API_KEY}&${PARAM_VOTE_AVG_GTE}${voteAverage}&${PARAM_RELEASE_DATE_GTE}${releaseDateGte}&${PARAM_RELEASE_DATE_LTE}${releaseDateLte}`
     )
       .then(response => response.json())
@@ -81,7 +82,7 @@ class App extends React.Component {
   }
 
   fetchConfiguration() {
-    fetch(`${PATH_BASE}${PATH_CONFIGURATION}?${PARAM_API}${API_KEY}`)
+    return fetch(`${PATH_BASE}${PATH_CONFIGURATION}?${PARAM_API}${API_KEY}`)
       .then(response => response.json())
       .then(result => this.setConfiguration(result))
       .catch(e => e);
@@ -161,8 +162,9 @@ class App extends React.Component {
     const { voteAverage, releaseDateGte, releaseDateLte } = this.state;
     this.setState({ voteAverage, releaseDateGte, releaseDateLte });
 
-    this.fetchConfiguration();
-    this.fetchMovies(voteAverage, releaseDateGte, releaseDateLte);
+    this.fetchConfiguration().then(() => {
+      this.fetchMovies(voteAverage, releaseDateGte, releaseDateLte);
+    });
   }
 }
 
