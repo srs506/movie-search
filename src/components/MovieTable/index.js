@@ -3,16 +3,18 @@ import './index.css';
 import MovieTableRow from './MovieTableRow';
 
 const MovieTable = ({ movies }) => {
+  if (movies.length === 0) {
+    return <table>No results :(</table>;
+  }
+
   return (
-    movies && (
-      <table>
-        <tbody>
-          {movies.map(function(movie) {
-            return <MovieTableRow movie={movie} key={movie.id} />;
-          })}
-        </tbody>
-      </table>
-    )
+    <table>
+      <tbody>
+        {movies.map(function(movie) {
+          return <MovieTableRow movie={movie} key={movie.id} />;
+        })}
+      </tbody>
+    </table>
   );
 };
 
