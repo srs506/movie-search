@@ -59,7 +59,8 @@ class App extends React.Component {
     });
 
     this.setState({
-      movieList: movies
+      movieList: movies,
+      isLoading: false
     });
   }
 
@@ -73,6 +74,8 @@ class App extends React.Component {
   }
 
   fetchMovies(voteAverage, releaseDateGte, releaseDateLte, page = 0) {
+    this.setState({ isLoading: true });
+
     return fetch(
       `${PATH_BASE}${PATH_DISCOVER}${PATH_MOVIE}?${PARAM_API}${API_KEY}&${PARAM_VOTE_AVG_GTE}${voteAverage}&${PARAM_RELEASE_DATE_GTE}${releaseDateGte}&${PARAM_RELEASE_DATE_LTE}${releaseDateLte}`
     )
