@@ -5,7 +5,8 @@ const MovieSearchForm = ({
   onSubmit,
   onInputChange,
   voteAverage,
-  releaseDateGte
+  releaseDateGte,
+  releaseDateLte
 }) => {
   return (
     <form onSubmit={onSubmit}>
@@ -28,6 +29,15 @@ const MovieSearchForm = ({
           type="number"
           name="releaseDateGte"
           value={releaseDateGte}
+          onChange={onInputChange}
+        />
+
+        <label htmlFor="releaseDateLte">Released Before</label>
+
+        <input
+          type="number"
+          name="releaseDateLte"
+          value={releaseDateLte}
           onChange={onInputChange}
         />
 
