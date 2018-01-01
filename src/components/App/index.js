@@ -4,6 +4,7 @@ import MovieSearchForm from '../MovieSearchForm';
 import Footer from '../Footer';
 import './index.css';
 import * as Moment from 'moment';
+import withLoading from '../../helpers/withLoading';
 
 const now = Moment();
 
@@ -138,7 +139,8 @@ class App extends React.Component {
       movieList,
       voteAverage,
       releaseDateGte,
-      releaseDateLte
+      releaseDateLte,
+      isLoading
     } = this.state;
     const movies = movieList || [];
 
@@ -153,7 +155,7 @@ class App extends React.Component {
             releaseDateLte={releaseDateLte}
           />
 
-          <MovieTable movies={movies} />
+          <MovieTableWithLoading isLoading={isLoading} movies={movies} />
 
           <Footer />
         </div>
@@ -170,5 +172,7 @@ class App extends React.Component {
     });
   }
 }
+
+const MovieTableWithLoading = withLoading(MovieTable);
 
 export default App;
