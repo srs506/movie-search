@@ -39,9 +39,8 @@ class App extends React.Component {
     this.setConfiguration = this.setConfiguration.bind(this);
     this.setMovieList = this.setMovieList.bind(this);
 
-    this.onMovieSearchSubmit = this.onMovieSearchSubmit.bind(this);
-    this.onVoteAverageChange = this.onVoteAverageChange.bind(this);
-    this.onReleaseDateGteChange = this.onReleaseDateGteChange.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
   }
 
   setMovieList(result) {
@@ -85,11 +84,21 @@ class App extends React.Component {
       .catch(e => e);
   }
 
-  onMovieSearchSubmit(event) {
+  onSearchSubmit(event) {
     const { voteAverage, releaseDateGte } = this.state;
 
     this.fetchMovies(voteAverage, releaseDateGte);
     event.preventDefault();
+  }
+
+  onInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
   onVoteAverageChange(event) {
@@ -125,11 +134,10 @@ class App extends React.Component {
       <div className="container">
         <div className="main">
           <MovieSearchForm
-            onSubmit={this.onMovieSearchSubmit}
+            onSubmit={this.onSearchSubmit}
+            onInputChange={this.onInputChange}
             voteAverage={voteAverage}
-            onVoteAverageChange={this.onVoteAverageChange}
             releaseDateGte={releaseDateGte}
-            onReleaseDateGteChange={this.onReleaseDateGteChange}
           />
 
           <MovieTable movies={movies} />

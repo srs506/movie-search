@@ -3,10 +3,9 @@ import './index.css';
 
 const MovieSearchForm = ({
   onSubmit,
+  onInputChange,
   voteAverage,
-  onVoteAverageChange,
-  releaseDateGte,
-  onReleaseDateGteChange
+  releaseDateGte
 }) => {
   return (
     <form onSubmit={onSubmit}>
@@ -18,17 +17,18 @@ const MovieSearchForm = ({
           min="0"
           max="10"
           step=".1"
-          className="voteAverageSlider"
+          name="voteAverage"
           value={voteAverage}
-          onChange={onVoteAverageChange}
+          onChange={onInputChange}
         />
 
         <label htmlFor="releaseDateGte">Released After</label>
 
         <input
           type="number"
+          name="releaseDateGte"
           value={releaseDateGte}
-          onChange={onReleaseDateGteChange}
+          onChange={onInputChange}
         />
 
         <div>
